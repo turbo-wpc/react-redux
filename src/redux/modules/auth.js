@@ -1,6 +1,6 @@
 // actions
-const LOGIN = 'REDUX-REACT-APP/auth/LOGIN';
-const LOGOUT = 'REDUX-REACT-APP/auth/LOGOUT';
+const LOGIN = 'REACT-REDUX/auth/LOGIN';
+const LOGOUT = 'REACT-REDUX/auth/LOGOUT';
 
 const initState = {
   login: false
@@ -19,7 +19,7 @@ export default function reducer(state = initState, action) {
       return {
         ...state,
         login: false,
-        userInfo: null
+        userInfo: undefined
       }
     default:
       return state;

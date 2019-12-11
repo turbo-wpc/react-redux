@@ -1,17 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import history from '../../services/history';
+import { login } from '../../redux/modules/auth';
+import { getAuthName } from '../../selectors';
 
-class Home extends Component {
-  render() {
-    return (
-      <div>
-        <p>hello world</p>
-        <button onClick={() => {
-          history.history.push('/list')
-        }}>跳转</button>
-      </div>
-    );
+const Home = ({ name, loginHandler }) => {
+  return <div>
+    <p>{`hello ${ name || 'world'}`}</p>
+    <button onClick={() => {
+      history.replace('/list', {
+        itemId: 444,
+        pvid: 666
+      })
+    }}>list</button>
+    <button onClick={() => {
+      loginHandler({ name: 'wang' })
+    }}>登录</button>
+  </div>
+}
+
+function mapStateToProps(state) {
+  return {
+    name: getAuthName(state)
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loginHandler: userInfo => dispatch(login(userInfo))
   }
 }
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,12 +1,13 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
+import auth from './modules/auth';
 
 const loggerMiddleware = createLogger();
 
 const createStoreWithMiddleware = applyMiddleware(loggerMiddleware)(createStore);
 
 const reducer = combineReducers({
-  toDoApp
+  auth
 });
 
 const configureStore = (initialState) => createStoreWithMiddleware(reducer, initialState);

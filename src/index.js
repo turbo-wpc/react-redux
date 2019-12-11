@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { Provider } from 'react-redux';
+import configureStore from './redux';
+import Routers from './Routers';
 
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = configureStore();
+
+ReactDOM.render(<Provider store={store}>
+    <Routers />
+  </Provider>, document.getElementById('root'));
 
 serviceWorker.unregister();
